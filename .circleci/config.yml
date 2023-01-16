@@ -55,11 +55,15 @@ jobs:
       - eb/setup
       - aws-cli/setup
       - checkout
+          # deploy API
       - run:
-          name: Deploy App
-          # deploy both apps
+          name: Deploy API
           command: |
-            npm run deploy
+            npm run api:deploy
+      - run:
+          name: Deploy Front-End
+          command: |
+            npm run frontend:deploy
             
 workflows:
   udagram:
