@@ -1,5 +1,5 @@
 eb init $APP_NAME --region $AWS_DEFAULT_REGION --platform node.js
-
+eb create --sample $APP_ENV
 eb use $APP_ENV
 #POSTGRES_HOST == AWS RDS DB url
 eb setenv POSTGRES_HOST=$POSTGRES_HOST \
@@ -8,4 +8,5 @@ POSTGRES_PASSWORD=$POSTGRES_PASSWORD \
 POSTGRES_DB=$POSTGRES_DB \
 DB_PORT=$DB_PORT \
 JWT_SECRET=$JWT_SECRET
+ls
 eb deploy $APP_ENV
