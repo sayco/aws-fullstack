@@ -51,7 +51,7 @@ jobs:
       # more setup needed for aws, node, elastic beanstalk
     steps:
       - node/install:
-          node-version: '16.19' 
+          node-version: '16.19.0' 
       - eb/setup
       - aws-cli/setup
       - checkout
@@ -69,5 +69,14 @@ workflows:
   udagram:
     jobs:
       - build
-      - deploy
-
+      - hold:
+          filters:
+            branches:
+              only:
+                - master
+          type: approval
+          requires:
+            - build
+      - deploy:
+          requires:
+            - hold
