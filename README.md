@@ -4,11 +4,17 @@
 
 # Udagram
 
-This application is provided to you as an alternative starter project if you do not wish to host your own code done in the previous courses of this nanodegree. The udagram application is a fairly simple application that includes all the major components of a Full-Stack web application.
+Front-End URL
+```
+http://udagram-shabana.s3-website-us-east-1.amazonaws.com/
+```
+![Udagram Home Page](/DOCS/S3/APP-HOMEPAGE.png)
 
 
 
 ### Dependencies
+
+[Dependencies File](/DOC/Deploy-CCI-Pipeline/Dependencies.md)
 
 ```
 - Node v14.15.1 (LTS) or more recent. While older versions can work it is advisable to keep node to latest LTS version
