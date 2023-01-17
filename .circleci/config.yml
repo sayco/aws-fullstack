@@ -28,7 +28,7 @@ jobs:
             npm run frontend:install
       # Install dependencies in the the backend API
       - run:
-          name: Install API Dependencies
+          name: Install Back-End API Dependencies
           command: |
             npm run api:build
       # Lint the frontend
@@ -43,12 +43,12 @@ jobs:
             npm run frontend:build
       # Build the backend API
       - run:
-          name: API Build
+          name: Back-End API Build
           command: |
             npm run api:build
       # Deploy the backend API
       - run:
-          name: Deploy API
+          name: Deploy Back-End API
           command: |
             npm run api:deploy
       # Deploy the front end
