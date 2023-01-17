@@ -2,7 +2,9 @@
 
 ## AWS Cloud Services
 
-### RDS [Relational Database Service]
+![Infrastructurse Diagram](arch.drawio.png)
+
+### RDS [Relational Database Service] for the database
 
 Udagram Application uses Postgres database using AWS RDS services
 
@@ -11,7 +13,7 @@ Current RDS URL: [database-1](database-1.c46aqqkmszp6.us-east-1.rds.amazonaws.co
 DB URL: database-1.c46aqqkmszp6.us-east-1.rds.amazonaws.com
 PORT:   5432
 ```
-### EB [Elastic Beanstalk]
+### EB [Elastic Beanstalk] for the API
 
 Udagram Application uses NodeJs Environment [Udagram-env] using AWS EB services
 
@@ -21,7 +23,7 @@ Current EB URL: [Back-End API](http://udagram-env.eba-ahtna7ib.us-east-1.elastic
 EB URL: http://udagram-env.eba-ahtna7ib.us-east-1.elasticbeanstalk.com/
 ```
 
-### S3 Bucket
+### S3 Bucket for web hosting
 
 Udagram Application uses a storage service for the front-end application using AWS S3 services.
 
