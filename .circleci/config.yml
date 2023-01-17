@@ -6,14 +6,16 @@ orbs:
   aws-cli: circleci/aws-cli@3.1.1
   # different jobs are calles later in the workflows sections
 jobs:
-  build:
+  deploy:
     docker:
       # the base image can run most needed actions with orbs
       - image: "cimg/node:16.19.0"
     steps:
       # install node and checkout code
       - node/install:
-          node-version: '16.19.0'         
+          node-version: '16.19.0'
+      - eb/setup
+      - aws-cli/setup
       - checkout
       # Use root level package.json to install dependencies in the frontend app
       - run:
@@ -24,7 +26,7 @@ jobs:
             echo "NPM --version" 
             echo $(npm --version)
             npm run frontend:install
-      # Install dependencies in the the backend API          
+      # Install dependencies in the the backend API
       - run:
           name: Install API Dependencies
           command: |
@@ -39,27 +41,17 @@ jobs:
           name: Front-End Build
           command: |
             npm run frontend:build
-      # Build the backend API      
+      # Build the backend API
       - run:
           name: API Build
           command: |
             npm run api:build
-  # deploy step will run only after manual approval
-  deploy:
-    docker:
-      - image: "cimg/base:stable"
-      # more setup needed for aws, node, elastic beanstalk
-    steps:
-      - node/install:
-          node-version: '16.19.0' 
-      - eb/setup
-      - aws-cli/setup
-      - checkout
-          # deploy API
+      # Deploy the backend API
       - run:
           name: Deploy API
           command: |
             npm run api:deploy
+      # Deploy the front end
       - run:
           name: Deploy Front-End
           command: |
@@ -68,15 +60,4 @@ jobs:
 workflows:
   udagram:
     jobs:
-      - build
-      - hold:
-          filters:
-            branches:
-              only:
-                - master
-          type: approval
-          requires:
-            - build
-      - deploy:
-          requires:
-            - hold
+      - deploy
